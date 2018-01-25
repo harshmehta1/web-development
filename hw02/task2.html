@@ -1,0 +1,30 @@
+<html>
+<head>
+	<title>Task 2 - HW02</title>
+</head>
+<body>
+	<h1 id="integer">10</h1>
+	<button id="alertBtn" onclick="sendAlert()">Alert</button>
+	<button id="incrementBtn" onclick="incrementInt()">Increment</button>
+	<button id="newParaBtn" onclick="addNewPara()">Add New Paragraph</button>
+	<div id="paragroup"></div>
+	<script type="text/javascript">
+		function sendAlert(){
+			alert(document.getElementById("integer").innerHTML);
+		}
+		function incrementInt(){
+			var currInt = document.getElementById("integer");
+			var newInt = currInt.innerHTML;
+			newInt++;
+			currInt.innerHTML = newInt;
+		}
+		function addNewPara(){
+			var paraGroup = document.getElementById("paragroup");
+			var node = document.createElement("P");
+			var textnode = document.createTextNode(document.getElementById("integer").innerHTML);
+			node.appendChild(textnode);
+			paraGroup.appendChild(node);
+		}
+	</script>
+</body>
+</html>
