@@ -1,5 +1,16 @@
 defmodule Calc do
 
+@moduledoc """
+Provides a String Expression Calculator
+##  Example:
+    > 1 + 2
+    3
+    > 5 * 7
+    35
+    > (1 - 1)
+    0
+
+"""
 @doc """
 Requests mathematical expression as input and passes them to eval()
 """
@@ -130,7 +141,6 @@ Calculates result of val1 op val2
 @doc """
 checks if precedence of opr is greater than opr2
 """
-
   def is_grt?(opr, opr2) do
     cond do
       opr == "(" or opr == ")" -> false
