@@ -7,8 +7,6 @@
       Enter a channel name to create/join: <input type="text" id="txt"><br><br>
       <input type="submit" value="Let's play!">
     </form>
-
-</center>
-    <!-- <p><a href="/game/demo">Join</a></p> -->
+    </center>
   </div>
 </div>
