@@ -1,0 +1,128 @@
+/* This file is for your main application css. */
+
+@import "bootstrap";
+
+body {
+  background-color: #E3F5FF;
+  width: 100%;
+  height: 100%;
+}
+
+.popup-content {
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: relative;
+
+}
+
+.play-again {
+
+  padding: 15px 32px;
+  background-color: darkgreen;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+.popup {
+
+  background-color: white;
+  border: 10px solid black;
+  width: 40%;
+  height: 40%;
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  text-align: center;
+  padding: 40px;
+  vertical-align:text-top;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+
+.game  {
+height: 100%;
+width: 100%;
+
+}
+
+
+
+.grid-container {
+  display: grid;
+  margin-top:10px;
+  grid-template-columns: minmax(50px, 100px) minmax(50px, 100px) minmax(50px, 100px) minmax(50px, 100px);
+  grid-template-rows: minmax(50px, 100px) minmax(50px, 100px) minmax(50px, 100px) minmax(50px, 100px);
+  grid-gap: 20px;
+  justify-content: center;
+}
+
+.tile {
+
+  height: 100%;
+  width: 100%;
+
+  border: 0px;
+  text-align: center;
+  color: white;
+  font-size: 40px;
+  background-color: black;
+}
+
+
+.below {
+  display: inline-block;
+  text-align: center;
+  padding-top: 8px;
+  width: 100%;
+  margin:auto;
+
+}
+
+.below-content {
+margin: auto;
+width: 20%;
+padding: 2px;
+
+}
+
+#score {
+  float: left;
+  padding-top: 6px;
+  padding-left: 15px;
+  margin: auto;
+  font-weight:bolder;
+  font-size: 20px;
+
+}
+
+#reset {
+  float: left;
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.tile-matched, .tile-matched:hover, .tile-matched:active  {
+  height: 100%;
+  width: 100%;
+  border: 0px;
+  text-align: center;
+  color: white;
+  font-size: 40px;
+  background-color: darkgreen;
+}
+
+.side { padding: 4ex; text-align: center; }
+h1 {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 2px;
+}
