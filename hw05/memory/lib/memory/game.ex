@@ -1,6 +1,11 @@
 defmodule Memory.Game do
+  @moduledoc """
+  This includes the logic of the Memory Game
+  """
 
-
+  @doc """
+    This function creates a new state for the game
+  """
   def new do
     %{
       tiles: newTiles(),
@@ -14,7 +19,9 @@ defmodule Memory.Game do
   end
 
 
-
+  @doc """
+    This functions sets the view at the client side
+  """
   def client_view(game) do
     tls = game.tiles
     guessedTls = game.guessedTiles
@@ -31,6 +38,10 @@ defmodule Memory.Game do
     }
   end
 
+  @doc """
+    This function hides all the times that are not matched or temporarily
+    guessed by the player
+  """
   def skeleton(tiles, guessedTiles) do
     tiles = tiles
     Enum.map tiles, fn tl ->
@@ -43,7 +54,11 @@ defmodule Memory.Game do
   end
 
 
-
+  @doc """
+    This function is called when user clicks on a Tile.
+    If the game is not paused, it changes flipped value of tile to true
+    and if 2 tiles have been selected it pauses the game temporarily
+  """
   def clickTile(game, id) do
     tls = game.tiles
     selectTl = game.selectedTiles
@@ -65,27 +80,30 @@ defmodule Memory.Game do
           Map.get(t, :id) == id end)
         selectTl = MapSet.put(selectTl, tilesSelected)
         if MapSet.size(selectTl) == 2 do
-          # game =
             Map.put(game, :tiles, tls)
                   |> Map.put(:selectedTiles, selectTl)
                   |> Map.put(:paused, true)
         else
-          # game =
             Map.put(game, :tiles, tls)
                   |> Map.put(:selectedTiles, selectTl)
         end
-      end
-    # game
+    end
   end
 
 
-
+  @doc """
+    This functions checks if the tile clicked has been selected already
+  """
   def isSelected(selectTl, id) do
     Enum.any? selectTl, fn t ->
               Map.get(hd(t), :id) == id
             end
   end
 
+  @doc """
+    This function checks if the two selected Tiles match.
+    If they match, marks them as matched and if not, flips the tiles back.
+  """
   def checkMatch(game) do
     add_score = 20
     slt = game.selectedTiles
@@ -120,6 +138,10 @@ defmodule Memory.Game do
     end
   end
 
+  @doc """
+    This function changes the flipped flag of 2 selected tiles to false and
+    unpauses the temporarily paused game.
+  """
   def flipBack(game) do
     sub_score = 5
     sc = game.score
@@ -138,34 +160,40 @@ defmodule Memory.Game do
      |> Map.put(:score, sc)
   end
 
+  @doc """
+    This function resets the game and generates a whole new state for the game
+  """
   def reset() do
     new()
   end
 
+  @doc """
+    This function passes a new shuffled list of tiles to be set as state
+    of the game
+  """
   def newTiles() do
     arr = getShuffledList()
-    # idCounter = 0
-    # Enum.map arr, fn it ->
-    #   %{:val => it, :flipped => false, :matched => false, :id => idCounter}
-    #   idCounter = idCounter + 1
-    # end
     createTileList(arr, [], 0)
   end
 
+  @doc """
+    This function shuffles the alphabets
+  """
   def getShuffledList() do
     alphabets = ["A","A","B","B","C","C","D","D","E","E","F","F","G","G","H","H"]
-    # idCounter = 0
     Enum.shuffle(alphabets)
-     # |> Enum.map fn it ->
-     #   %{:val => it, :flipped => false, :matched => false, :id => idCounter}
-     #   idCounter = idCounter + 1
-     # end
   end
 
+  @doc """
+    This function creates the list of tiles from the given list of alphabets
+  """
   def createTileList([], newtiles, counter) do
     newtiles
   end
 
+  @doc """
+      This function creates the list of tiles from the given list of alphabets
+  """
   def createTileList([head | tail], newtiles, counter) do
     newtiles = newtiles ++ [%{:val => head, :flipped => false, :matched => false, :id => counter}]
     counter = counter + 1
