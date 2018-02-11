@@ -24,13 +24,11 @@ export default function play_game(root, channel){
 
 
 
-var count = 0;
-
 class Board extends React.Component {
   constructor(props){
     super(props);
     this.channel = props.channel;
-    this.state = {skel: [], tilesMatched: 0, score: 0, paused: false};
+    this.state = {skel: [], tilesMatched: 0, score: 0, paused: false, tilesSelected: 0};
 
     this.channel.join()
       .receive("ok", this.gotView.bind(this))
@@ -45,6 +43,7 @@ class Board extends React.Component {
   }
 
   clickTile(tile) {
+    var count = this.state.tilesSelected;
     if(!tile.flipped && !tile.matched){
       if(count <= 2 && this.state.paused == false) {
         count = count + 1;

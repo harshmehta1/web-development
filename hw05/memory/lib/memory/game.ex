@@ -21,11 +21,13 @@ defmodule Memory.Game do
     pauseState = game.paused
     tm = game.tilesMatched
     sc = game.score
+    sltCount = MapSet.size(game.selectedTiles)
     %{
       skel: skeleton(tls, guessedTls),
       tilesMatched: tm,
       score: sc,
       paused: pauseState,
+      tilesSelected: sltCount,
     }
   end
 
