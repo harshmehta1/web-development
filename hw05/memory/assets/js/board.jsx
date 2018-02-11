@@ -36,31 +36,35 @@ class Board extends React.Component {
 
   }
 
-
+  //gets view from the server and sets the state of the game
   gotView(view){
     this.setState(view.game);
   }
 
+  //handles the click on tiles and filters request sent to server by checking
+  // if the game is halted (due to 2 tiles selected) or if the tile is already
+  // selected
   clickTile(tile) {
-    var count = this.state.tilesSelected;
+    var ts = this.state.tilesSelected;
     if(!tile.flipped && !tile.matched){
-      if(count <= 2 && this.state.paused == false) {
-        count = count + 1;
+      if(ts <= 2 && this.state.paused == false) {
+        ts = ts + 1;
         this.channel.push("click", { id: tile.id })
           .receive("ok", this.gotView.bind(this));
-          if(count == 2){
+          if(ts == 2){
             this.channel.push("check", {})
             .receive("ok", this.gotView.bind(this));
-            count = 0;
+            ts = 0;
           }
         }
       }
-    }
+  }
 
-    restartGame(){
+  //resets the current game
+  restartGame(){
       this.channel.push("reset", {})
         .receive("ok", this.gotView.bind(this));
-    }
+  }
 
   render() {
     //generates a list of Tiles
